@@ -11,7 +11,7 @@ export const routes: RouteRecordRaw[] = [
         component: Home,
         beforeEnter: (to, from, next) => {
             // We cant render this page without the correct information from the login
-            if (localStorage.getItem('profile') === null) {
+            if (!localStorage.getItem('profile')) {
                 next({ name: 'login' });
                 return;
             }
