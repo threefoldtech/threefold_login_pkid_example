@@ -1,6 +1,6 @@
 tasks:
     - name: Dev Server
-      command: yarn && yarn dev --https
+      command: yarn && yarn dev --host --https
 
 vscode:
     extensions:
