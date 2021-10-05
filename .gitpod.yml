@@ -5,3 +5,7 @@ tasks:
       command: npm run start-database
     - name: Dev Server
       command: yarn dev --https
+
+vscode:
+    extensions:
+        - octref.vetur

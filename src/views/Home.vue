@@ -715,7 +715,7 @@
 
         const hasDataInPkid = await client.getDoc(publicKey, 'Preferences');
 
-        if (!hasDataInPkid) {
+        if (hasDataInPkid.status == 404) {
             console.log('Inserting dummy data in pkid as an example');
             console.log(
                 await client.setDoc(
@@ -737,9 +737,7 @@
         }
 
         const preferencesValue = (await client.getDoc(publicKey, 'Preferences')).data;
-        const keysValue = (await client.getDoc(publicKey, 'Keys')).data;
-        console.log((await client.getDoc(publicKey, 'Preferences')).data);
-        console.log((await client.getDoc(publicKey, 'Keys')).data);
+        const keysValue = (await client.getDoc(publicKey, 'Wallets')).data;
 
         pkidData.data = [
             {
