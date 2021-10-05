@@ -4,7 +4,7 @@ ports:
 
 tasks:
     - name: Dev Server
-      command: yarn && yarn dev --host --https
+      command: yarn && yarn dev
 
 vscode:
     extensions:
