@@ -1,0 +1,7 @@
+tasks:
+    - name: Dependencies & Database
+      init: |
+          yarn
+      command: npm run start-database
+    - name: Dev Server
+      command: yarn dev --https
