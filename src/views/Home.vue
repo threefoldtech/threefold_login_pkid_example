@@ -635,8 +635,8 @@
 
 <script lang="ts" setup>
     import { ref, reactive } from 'vue';
-    import router from '../router/index';
-    import pkid from '@jimber/pkid';
+    // const pkid = require('jimber/pkid');
+    // import {default as Pkid} from '@jimber/pkid';
     import { entropyToMnemonic } from 'bip39';
     import _sodium from 'libsodium-wrappers';
     import {
@@ -671,7 +671,7 @@
         localStorage.removeItem('signedEmailIdentifier');
         localStorage.removeItem('signedPhoneIdentifier');
 
-        router.push({ name: 'login' });
+        // router.push({ name: 'login' });
     };
     const navigation = [{ name: 'Pkid', href: '#', icon: DatabaseIcon, current: true }];
     const teams = [];
@@ -710,68 +710,68 @@
         const publicKey = keyPair.publicKey;
         const privateKey = keyPair.privateKey;
 
-        const client = new pkid(url, keyPair);
-        console.log(client);
+        // const client = new pkid(url, keyPair);
+        // console.log(client);
 
-        const hasDataInPkid = await client.getDoc(publicKey, 'Preferences');
+        // const hasDataInPkid = await client.getDoc(publicKey, 'Preferences');
 
-        if (hasDataInPkid.status == 404) {
-            console.log('Inserting dummy data in pkid as an example');
-            console.log(
-                await client.setDoc(
-                    'Preferences',
-                    JSON.stringify({ themeColor: 'dark', avatarIcon: 'test2.png' }),
-                    true
-                )
-            );
-            console.log(
-                await client.setDoc(
-                    'Wallets',
-                    JSON.stringify({
-                        walletKey: 'MLEG6FdoDKD2b4MqnkCUz2pMgBGYYpZtntHIKgQQshg=',
-                        walletName: 'monthlyWallet2',
-                    }),
-                    true
-                )
-            );
-        }
+        // if (hasDataInPkid.status == 404) {
+        //     console.log('Inserting dummy data in pkid as an example');
+        //     console.log(
+        //         await client.setDoc(
+        //             'Preferences',
+        //             JSON.stringify({ themeColor: 'dark', avatarIcon: 'test2.png' }),
+        //             true
+        //         )
+        //     );
+        //     console.log(
+        //         await client.setDoc(
+        //             'Wallets',
+        //             JSON.stringify({
+        //                 walletKey: 'MLEG6FdoDKD2b4MqnkCUz2pMgBGYYpZtntHIKgQQshg=',
+        //                 walletName: 'monthlyWallet2',
+        //             }),
+        //             true
+        //         )
+        //     );
+        // }
 
-        const preferencesValue = (await client.getDoc(publicKey, 'Preferences')).data;
-        const keysValue = (await client.getDoc(publicKey, 'Wallets')).data;
+        // const preferencesValue = (await client.getDoc(publicKey, 'Preferences')).data;
+        // const keysValue = (await client.getDoc(publicKey, 'Wallets')).data;
 
-        pkidData.data = [
-            {
-                id: 1,
-                title: 'Prefs',
-                value: preferencesValue,
-                members: [
-                    {
-                        name: 'Dries Vincent',
-                        handle: 'driesvincent',
-                        imageUrl:
-                            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-                    },
-                ],
-                totalMembers: 12,
-                bgColorClass: 'bg-blue-600',
-            },
-            {
-                id: 2,
-                title: 'Wallets',
-                value: keysValue,
-                members: [
-                    {
-                        name: 'Dries Vincent',
-                        handle: 'driesvincent',
-                        imageUrl:
-                            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-                    },
-                ],
-                totalMembers: 12,
-                bgColorClass: 'bg-yellow-600',
-            },
-            // More projects...
-        ];
+        // pkidData.data = [
+        //     {
+        //         id: 1,
+        //         title: 'Prefs',
+        //         value: preferencesValue,
+        //         members: [
+        //             {
+        //                 name: 'Dries Vincent',
+        //                 handle: 'driesvincent',
+        //                 imageUrl:
+        //                     'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        //             },
+        //         ],
+        //         totalMembers: 12,
+        //         bgColorClass: 'bg-blue-600',
+        //     },
+        //     {
+        //         id: 2,
+        //         title: 'Wallets',
+        //         value: keysValue,
+        //         members: [
+        //             {
+        //                 name: 'Dries Vincent',
+        //                 handle: 'driesvincent',
+        //                 imageUrl:
+        //                     'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        //             },
+        //         ],
+        //         totalMembers: 12,
+        //         bgColorClass: 'bg-yellow-600',
+        //     },
+        //     // More projects...
+        // ];
     })();
 
     // const client = new pkid(url, publicKey, privateKey)

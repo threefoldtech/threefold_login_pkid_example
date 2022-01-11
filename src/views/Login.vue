@@ -89,7 +89,7 @@
     };
 
     const initiateLoginFlow = async () => {
-        const threeFoldAPIHost = 'https://login.staging.jimber.org';
+        const threeFoldAPIHost = 'https://login.threefold.me';
         const appId = window.location.host;
         const seedPhrase =
             'calm science teach foil burst until next mango hole sponsor fold bottom cousin push focus track truly tornado turtle over tornado teach large fiscal';
@@ -101,7 +101,7 @@
             appId,
             seedPhrase,
             redirectUrl,
-            'https://openkyc.staging.jimber.org'
+            'https://openkyc.live/verification/verify-sei'
         );
         await _login.init();
         console.log('Await done ?');
@@ -113,36 +113,36 @@
 
         // @ts-ignore
         const loginUrl = _login.generateLoginUrl(state, {
-            scope: JSON.stringify({ email: true, phone: true, derivedSeed: true }),
+            scope: JSON.stringify({ email: true, phone: true, doubleName: true, derivedSeed: true }),
         });
 
         console.log('loginUrl: ', loginUrl);
 
         const popup = popupCenter(loginUrl, 'Threefold login', 800, 550);
 
-        window.onmessage = async (e: MessageEvent) => {
-            if (e.data.message === 'threefoldLoginRedirectSuccess') {
-                let profile = e.data.profileData;
-                console.log('e.data.profileData: ', e.data.profileData);
-                window.localStorage.setItem('profile', JSON.stringify(e.data.profileData));
-                const sei = e.data.profileData?.profile?.email?.sei;
-                if (sei) {
-                    console.log('SEI. ', sei);
-                    let signedEmailIdentifier = await _login.verifySignedEmailIdenfier(sei);
-                    window.localStorage.setItem('signedEmailIdentifier', JSON.stringify(signedEmailIdentifier));
-                    console.log('signedEmailIdentifier: ', signedEmailIdentifier);
-                }
-                const spi = e.data.profileData?.profile?.email?.spi;
-                if (spi) {
-                    console.log('SPI. ', spi);
-                    let signedPhoneIdentifier = await _login.verifySignedPhoneIdenfier(spi);
-                    window.localStorage.setItem('signedPhoneIdentifier', JSON.stringify(signedPhoneIdentifier));
-                    console.log('signedPhoneIdentifier: ', signedPhoneIdentifier);
-                }
-                popup?.close();
-                router.push({ name: 'home' });
-            }
-        };
+        // window.onmessage = async (e: MessageEvent) => {
+        //     if (e.data.message === 'threefoldLoginRedirectSuccess') {
+        //         let profile = e.data.profileData;
+        //         console.log('e.data.profileData: ', e.data.profileData);
+        //         window.localStorage.setItem('profile', JSON.stringify(e.data.profileData));
+        //         const sei = e.data.profileData?.profile?.email?.sei;
+        //         if (sei) {
+        //             console.log('SEI. ', sei);
+        //             let signedEmailIdentifier = await _login.verifySignedEmailIdenfier(sei);
+        //             window.localStorage.setItem('signedEmailIdentifier', JSON.stringify(signedEmailIdentifier));
+        //             console.log('signedEmailIdentifier: ', signedEmailIdentifier);
+        //         }
+        //         const spi = e.data.profileData?.profile?.email?.spi;
+        //         if (spi) {
+        //             console.log('SPI. ', spi);
+        //             let signedPhoneIdentifier = await _login.verifySignedPhoneIdenfier(spi);
+        //             window.localStorage.setItem('signedPhoneIdentifier', JSON.stringify(signedPhoneIdentifier));
+        //             console.log('signedPhoneIdentifier: ', signedPhoneIdentifier);
+        //         }
+        //         popup?.close();
+        //         router.push({ name: 'home' });
+        //     }
+        // };
     };
 </script>
 

@@ -25,10 +25,13 @@
         "stream": "^0.0.2",
         "stream-browserify": "^3.0.0",
         "tailwindcss": "^2.2.16",
+        "vite-plugin-mkcert": "^1.5.2",
         "vue": "^3.2.19",
         "vue-router": "^4.0.11"
     },
     "devDependencies": {
+        "@types/libsodium-wrappers": "^0.7.9",
+        "@types/randomstring": "^1.1.8",
         "@vitejs/plugin-vue": "^1.9.2",
         "@vue/compiler-sfc": "^3.2.19",
         "autoprefixer": "^10.3.6",

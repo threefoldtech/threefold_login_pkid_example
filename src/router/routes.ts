@@ -6,7 +6,7 @@ import PathNotFound from '@/views/PathNotFound.vue';
 
 export const routes: RouteRecordRaw[] = [
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: Home,
         beforeEnter: (to, from, next) => {
